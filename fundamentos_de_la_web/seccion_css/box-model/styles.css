@@ -1,0 +1,26 @@
+div {
+    color:white;
+    width: 320px;
+    height: 120px;
+    padding: 12px;
+    margin: 20px;
+    display: inline-block;
+}
+
+#primer{
+    background-color: cyan;
+}
+#segundo{
+    background-color: fuchsia;
+}
+#tercero{
+    background-color: blue;
+}
+
+h1{
+    text-decoration: underline wavy;
+}
+
+body {
+    text-align: center;
+}

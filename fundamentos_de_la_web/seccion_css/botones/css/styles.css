@@ -1,0 +1,46 @@
+button {
+    margin: 4px;
+}
+
+#buscar {
+    background-color: lightgray;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 92px;
+    height: 36px;
+}
+
+#buscar:active {
+    background-color: white;
+    color: gray;
+    border-color: gray;
+}
+
+#mas {
+    background-color: orange;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0px;
+    font-size: 20px;
+}
+
+#mas:active {
+    background-color: orangered;
+    color: gray;
+}
+
+#crear {
+    background-color:deepskyblue;
+    color: white;
+    border: 0px;
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+    box-shadow: 4px 4px 8px rgb(182, 182, 182);
+}
+
+#crear:active {
+    background-color: skyblue;
+}
