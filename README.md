@@ -1,5 +1,4 @@
 # Practice Code
----
 ## What is this?
 In this repository I will upload the code of minor practices from a bootcamp i'm participating on.
 ## Objective
