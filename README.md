@@ -1,15 +1,14 @@
 # Practice Code
 ## What is this?
-In this repository I will upload the code of minor practices from a bootcamp i'm participating on.
+A repository where I will upload code from practice given in the bootcamp course i'm doing.
 ## Objective
 My objective is to get used to GitHub and also have all my practice code organized.
 ## What can you expect?
-The bootcamp is focused in **web development** with a focus on **springboot**.
+The bootcamp is for **web development** with a focus on **springboot**.
 Here I will upload really simple code used for practicing concepts of:
 - HTML
 - CSS
 - JavaScript
-- Web Development
 - Java
 - Spring Boot
 ## What not to expect?
