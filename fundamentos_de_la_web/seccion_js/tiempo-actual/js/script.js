@@ -4,6 +4,14 @@ cookieBtn.addEventListener("click", function () {
     this.closest(".cookie-box").remove();
 });
 
+const cities = document.querySelectorAll(".city-list > li");
+
+for (let i = 0; i<cities.length; i++) {
+    cities[i].addEventListener("click", function(){
+        alert("Cargando reporte del clima de " + cities[i].textContent);
+    })
+}
+
 const tempSelector = document.querySelector("#temp")
 
 tempSelector.addEventListener("change", changeTemp);
