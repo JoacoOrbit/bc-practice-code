@@ -5,8 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiempo Actual</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
-    
+    <header>
+        <p class="main-title">Tiempo Local</p>
+        <nav class="city-nav">
+            <ul class="city-list">
+                <li>Buenos Aires</li>
+                <li>Ciudad de México</li>
+                <li>Santiago</li>
+                <li>Sao Paulo</li>
+                <li>Quito</li>
+            </ul>
+        </nav>
+        <p>
+            Mostrar temperatura en 
+            <select name="temp" id="temp">
+                <option value="celsius">°C</option>
+                <option value="fahrenheit">°F</option>
+            </select>
+        </p>
+    </header>
+    <main>
+        <h1>Buenos Aires</h1>
+        <section>
+            <article>
+                <img src="svg/cloudy.svg" alt="nube">
+                <p class="day">Hoy</p>
+                <p class="weather">Nublado</p>
+                <p class="temp-value">
+                    <span class="max-temp">22</span>°C <span class="min-temp">15</span>°C
+                </p>
+            </article>
+            <article>
+                <img src="svg/rain.svg" alt="nube de lluvia">
+                <p class="day">Mañana</p>
+                <p class="weather">Lluvioso</p>
+                <p class="temp-value">
+                    <span class="max-temp">20</span>°C <span class="min-temp">13</span>°C
+                </p>
+            </article>
+            <article>
+                <img src="svg/thunderstorms.svg" alt="nube de tormenta">
+                <p class="day">Miércoles</p>
+                <p class="weather">Tormentas</p>
+                <p class="temp-value">
+                    <span class="max-temp">18</span>°C <span class="min-temp">11</span>°C
+                </p>
+            </article>
+            <article>
+                <img src="svg/cloudy.svg" alt="nube">
+                <p class="day">Jueves</p>
+                <p class="weather">Parcialmente nublado</p>
+                <p class="temp-value">
+                    <span class="max-temp">21</span>°C <span class="min-temp">14</span>°C
+                </p>
+            </article>
+            <article>
+                <img src="svg/clear-day.svg" alt="sol">
+                <p class="day">Viernes</p>
+                <p class="weather">Soleado</p>
+                <p class="temp-value">
+                    <span class="max-temp">24</span>°C <span class="min-temp">17</span>°C
+                </p>
+            </article>
+        </section>
+    </main>
+    <div class="cookie-box"><p>Detente! Tiempo de cookies. Usamos cookies (tristemente, no las comestibles) para personalizar contenido y anuncios, proporcionar funciones de redes sociales y analizar nuestro tráfico. <a href="#">Leer más...</a></p> <button class="cookie-btn">Acepto</button></div>
 </body>
 </html>
