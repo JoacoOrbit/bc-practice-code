@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(84, 84, 84);
+}
+
+.calculator {
+    width: 212px;
+    background-color: gray;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin: 10px 0px;
+}
+
+.buttons{
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+    grid-gap: 4px;
+}
+
+button {
+    width: 50px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+}
+
+.number {
+    background-color: white;
+}
+
+.operator, #decimal, #equals, .clear {
+    background-color: orange;
+    color: white;
+}
+
+button:hover{
+    scale: 1.1;
+}
+
+button:active{
+    scale: 1;
+}
