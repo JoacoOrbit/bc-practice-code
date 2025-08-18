@@ -1,0 +1,45 @@
+#clock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+#clock {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    border: 4px black solid;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: 50% 100%;
+    transform: translateX(-50%);
+}
+
+
+#hour-hand {
+    width: 8px;
+    height: 25%;
+    background-color: black;
+}
+
+#minute-hand {
+    width: 4px;
+    height: 35%;
+    background-color: black;
+
+}
+
+#second-hand {
+    width: 2px;
+    height: 40%;
+    background-color: red;
+
+}
