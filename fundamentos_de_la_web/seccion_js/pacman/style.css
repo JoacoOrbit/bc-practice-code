@@ -1,0 +1,49 @@
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: yellow;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.pacmap {
+    width: 280px;
+    height: 310px;
+    border: 4px blue dotted;
+    display: grid;
+    grid-template-columns: repeat(28, 10px);
+    grid-template-rows: repeat(31, 10px);
+}
+
+.wall {
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+}
+
+.big-dot {
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+}
+
+.empty {
+    width: 10px;
+    height: 10px;
+}
+
+.pacman {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+}
