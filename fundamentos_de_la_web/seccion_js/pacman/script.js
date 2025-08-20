@@ -110,23 +110,32 @@ function movimiento (){
     switch (direction){
         case "up":
             pacImg.src = "pacman3.png";
-            pacmanY -= 1*pacSpeed;
-            pacmanDiv.style.top = pacmanY * blockHeight + "%";
+            if (map[Math.ceil(pacmanY-1)][Math.trunc(pacmanX)] != 0){
+                pacmanY -= 1*pacSpeed;
+                pacmanDiv.style.top = pacmanY * blockHeight + "%";
+                //14.5
+            }
             break;
         case "right":
             pacImg.src = "pacman1.png";
-            pacmanX += 1*pacSpeed;
-            pacmanDiv.style.left = pacmanX * blockHeight + "%";
+            if (map[Math.trunc(pacmanY)][Math.floor(pacmanX+1)] != 0){
+                pacmanX += 1*pacSpeed;
+                pacmanDiv.style.left = pacmanX * blockHeight + "%";
+            }
             break;
         case "down":
             pacImg.src = "pacman4.png";
-            pacmanY += 1*pacSpeed;
-            pacmanDiv.style.top = pacmanY * blockHeight + "%";
+            if (map[Math.floor(pacmanY+1)][Math.trunc(pacmanX)] != 0){
+                pacmanY += 1*pacSpeed;
+                pacmanDiv.style.top = pacmanY * blockHeight + "%";
+            }
             break;
         case "left":
             pacImg.src = "pacman2.png";
-            pacmanX -= 1*pacSpeed;
-            pacmanDiv.style.left = pacmanX * blockHeight + "%";
+            if (map[Math.trunc(pacmanY)][Math.ceil(pacmanX-1)] != 0){
+                pacmanX -= 1*pacSpeed;
+                pacmanDiv.style.left = pacmanX * blockHeight + "%";
+            }
             break;
     }
     
