@@ -219,16 +219,36 @@ function addPoints (type) {
     pointElement.textContent = pointsToInt;
 }
 
+function timeCounter (){
+    let timeElement = document.querySelector("#time");
+    let currentTime = timeElement.textContent;
+    let timeSplit = currentTime.split(":");
+    let minutes = timeSplit[0];
+    let seconds = timeSplit[1];
+    if (seconds > 0) {
+        seconds--;
+    } else {
+        minutes--;
+        seconds=59;
+    }
+    timeElement.textContent = minutes + ":" + seconds; 
+}
+
 // Hacer funcion que se mueva automaticamente con setinterval tomando en cuenta la variable
 
 // make games run
 
 function game(){
     movimiento();
-    console.log(map[pacmanY][pacmanX])
+    // console.log(map[pacmanY][pacmanX])
     mapUpdate();
     // console.log(pacmanArray);
-    console.log(map[pacmanY][pacmanX])
+    // console.log(map[pacmanY][pacmanX])
+}
+
+function statusCheck(){
+    checkResult();
+    timeCounter();
 }
 
 // setTimeout(() => {
@@ -242,5 +262,5 @@ function game(){
 //game updates constantly
 
 const gaming = setInterval(game, 400);
-const result = setInterval(checkResult, 1000)
+const result = setInterval(statusCheck, 1000)
 // setInterval(render, 1000);
