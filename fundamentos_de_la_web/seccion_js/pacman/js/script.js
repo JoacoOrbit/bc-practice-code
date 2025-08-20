@@ -183,6 +183,14 @@ function mapUpdate(){
             map[pacmanY][pacmanX] = 3;
             addPoints("big-dot");
             break;
+        case 6:
+            document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).innerHTML = "";
+            addPoints("cherry");
+            map[pacmanY][pacmanX] = 3;
+            if (document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.contains("dot")) {
+                document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.remove("dot");
+            }
+            break;
     }
 }
 
@@ -202,7 +210,6 @@ function checkResult () {
         clearInterval(gaming);
         clearInterval(result);
     }
-    return areThereDots;
 }
 
 // add points based on the type of item eaten
@@ -213,11 +220,13 @@ function addPoints (type) {
         pointsToInt += 5;
     } else if (type == "big-dot") {
         pointsToInt += 20;
-    } else if (typpe == "cherry") {
+    } else if (type == "cherry") {
         pointsToInt += 100;
     }
     pointElement.textContent = pointsToInt;
 }
+
+// function that counts down
 
 function timeCounter (){
     let timeElement = document.querySelector("#time");
@@ -232,6 +241,19 @@ function timeCounter (){
         seconds=59;
     }
     timeElement.textContent = minutes + ":" + seconds; 
+}
+
+function addCherry () {
+    let cherrySpot1 = document.querySelector("#pm5-13");
+    let cherrySpot2 = document.querySelector("#pm23-14");
+
+    if (pacmanY >= 14) {
+        cherrySpot1.innerHTML = '<img src="images/cherry.png" alt="cherry" class="cherry cherry-container">';
+        map[5][13] = 6;
+    } else {
+        cherrySpot2.innerHTML = '<img src="images/cherry.png" alt="cherry" class="cherry cherry-container">';
+        map[5][13] = 6;
+    }
 }
 
 // Hacer funcion que se mueva automaticamente con setinterval tomando en cuenta la variable
@@ -262,5 +284,6 @@ function statusCheck(){
 //game updates constantly
 
 const gaming = setInterval(game, 400);
-const result = setInterval(statusCheck, 1000)
+const result = setInterval(statusCheck, 1000);
+const cherry = setInterval(addCherry, 30000);
 // setInterval(render, 1000);

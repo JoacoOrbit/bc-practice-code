@@ -148,3 +148,15 @@ h2{
 #time::before {
     content: "⏱️";
 }
+
+.cherry {
+    width: 90%;
+    height: 90%;
+    z-index: 3;
+}
+
+.cherry-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
