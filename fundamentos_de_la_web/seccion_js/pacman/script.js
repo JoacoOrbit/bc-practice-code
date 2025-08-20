@@ -144,9 +144,13 @@ pacmanDiv.style.top = pacmanY * blockHeight + "%";
 };
 
 function turbo(){
-    pacSpeed = 1;
-    setTimeout(5000);
-    pacSpeed = 0.5;
+    // pacSpeed = 1;
+    pacmanDiv.style.backgroundColor = "blue";
+    setTimeout(() => {
+        pacmanDiv.style.backgroundColor = "";}
+        ,10000);
+    
+    // pacSpeed = 0.5;
 }
 
 function mapUpdate(){
@@ -157,6 +161,7 @@ function mapUpdate(){
             break;
         case 2:
             turbo();
+            map[pacmanY][pacmanX] = 3;
             break;
     }
 }
@@ -165,8 +170,9 @@ function mapUpdate(){
 
 function game(){
     movimiento();
+    console.log(map[pacmanY][pacmanX])
     mapUpdate();
-    console.log(pacmanArray);
+    // console.log(pacmanArray);
     console.log(map[pacmanY][pacmanX])
 }
 
