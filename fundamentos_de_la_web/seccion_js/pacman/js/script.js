@@ -125,7 +125,7 @@ function movimiento (){
             break;
         case "right":
             pacImg.src = "images/pacman1.png";
-            if (map[pacmanY][pacmanX+1] != 0 && map[pacmanY+1][pacmanX] !=4){
+            if (map[pacmanY][pacmanX+1] != 0 && map[pacmanY][pacmanX+1] !=4){
                 pacmanX ++;
                 pacmanDiv.style.left = pacmanX * blockHeight + "%";
             }
@@ -139,7 +139,7 @@ function movimiento (){
             break;
         case "left":
             pacImg.src = "images/pacman2.png";
-            if (map[pacmanY][pacmanX-1] != 0 && map[pacmanY-1][pacmanX] !=4){
+            if (map[pacmanY][pacmanX-1] != 0 && map[pacmanY][pacmanX-1] !=4){
                 pacmanX --;
                 pacmanDiv.style.left = pacmanX * blockHeight + "%";
             }
@@ -207,11 +207,7 @@ function checkResult () {
     let areThereDots = document.querySelectorAll(".dot, .big-dot");
 
     if (areThereDots.length == 0) {
-        pacmanDiv.remove();
-        alertContainer.classList.toggle("hidden");
-        winAlert.classList.toggle("hidden");
-        clearInterval(gaming);
-        clearInterval(result);
+        gameResult("win");
     }
 }
 
@@ -244,6 +240,10 @@ function timeCounter (){
         seconds=59;
     }
     timeElement.textContent = minutes + ":" + seconds; 
+
+    if (timeElement.textContent == "0:0") {
+        gameResult("lose");
+    }
 }
 
 function addCherry () {
@@ -255,7 +255,7 @@ function addCherry () {
         map[5][13] = 6;
     } else if (pacmanY < 14 && (map[5][13] != 6 || map[5][13] != 6)){
         cherrySpot2.innerHTML = '<img src="images/cherry.png" alt="cherry" class="cherry cherry-container">';
-        map[5][13] = 6;
+        map[23][14] = 6;
     }
 }
 
@@ -313,6 +313,32 @@ function ghostMovement () {
 
 }
 
+function gameResult(answer){
+        pacmanDiv.remove();
+        alertContainer.classList.toggle("hidden");
+        clearInterval(gaming);
+        clearInterval(result);
+        clearInterval(cherry);
+        if (answer == "lose") {
+            lossAlert.classList.toggle("hidden");
+        } else {
+            winAlert.classList.toggle("hidden");
+        }
+}
+
+let pacmanLives = 3;
+let hearts = document.querySelectorAll(".lifes");
+
+function ghostDamage(){
+    if (pacmanX == ghostX && pacmanY == ghostY) {
+        hearts[pacmanLives-1].remove();
+        pacmanLives--;
+    }
+    if (pacmanLives==0){
+        gameResult("lose");
+    }
+}
+
 // Hacer funcion que se mueva automaticamente con setinterval tomando en cuenta la variable
 
 // make games run
@@ -325,6 +351,7 @@ function game(){
     // console.log(map[pacmanY][pacmanX])
     
     ghostMovement();
+    ghostDamage();
 }
 
 function statusCheck(){
