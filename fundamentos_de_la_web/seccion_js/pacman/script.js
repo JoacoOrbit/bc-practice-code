@@ -75,7 +75,7 @@ render(map);
 //Posicion inicial
 let pacmanY = 23;
 let pacmanX = 14;
-let pacmanArray = map[pacmanY][pacmanX];
+// let pacmanArray = map[pacmanY][pacmanX];
 let pacmanDiv = document.querySelector(".pacman");
 let blockWidth = 3.57;
 let blockHeight = 3.22;
@@ -83,7 +83,7 @@ pacmanDiv.style.left = pacmanX * blockWidth + "%";
 pacmanDiv.style.top = pacmanY * blockHeight + "%";
 // mapMat[pacmanX][pacmanY] = 4;
 let direction;
-let pacSpeed = 0.5;
+// let pacSpeed = 0.5;
 
 let pacImg = document.querySelector("img");
 
@@ -110,30 +110,30 @@ function movimiento (){
     switch (direction){
         case "up":
             pacImg.src = "pacman3.png";
-            if (map[Math.ceil(pacmanY-1)][Math.trunc(pacmanX)] != 0){
-                pacmanY -= 1*pacSpeed;
+            if (map[pacmanY-1][pacmanX] != 0){
+                pacmanY --;
                 pacmanDiv.style.top = pacmanY * blockHeight + "%";
                 //14.5
             }
             break;
         case "right":
             pacImg.src = "pacman1.png";
-            if (map[Math.trunc(pacmanY)][Math.floor(pacmanX+1)] != 0){
-                pacmanX += 1*pacSpeed;
+            if (map[pacmanY][pacmanX+1] != 0){
+                pacmanX ++;
                 pacmanDiv.style.left = pacmanX * blockHeight + "%";
             }
             break;
         case "down":
             pacImg.src = "pacman4.png";
-            if (map[Math.floor(pacmanY+1)][Math.trunc(pacmanX)] != 0){
-                pacmanY += 1*pacSpeed;
+            if (map[pacmanY+1][pacmanX] != 0){
+                pacmanY ++;
                 pacmanDiv.style.top = pacmanY * blockHeight + "%";
             }
             break;
         case "left":
             pacImg.src = "pacman2.png";
-            if (map[Math.trunc(pacmanY)][Math.ceil(pacmanX-1)] != 0){
-                pacmanX -= 1*pacSpeed;
+            if (map[pacmanY][pacmanX-1] != 0){
+                pacmanX --;
                 pacmanDiv.style.left = pacmanX * blockHeight + "%";
             }
             break;
@@ -150,8 +150,8 @@ function turbo(){
 }
 
 function mapUpdate(){
-    pacmanArray = map[pacmanY][pacmanX]
-    switch (pacmanArray) {
+    // pacmanArray = map[pacmanY][pacmanX]
+    switch (map[pacmanY][pacmanX]) {
         case 1:
             map[pacmanY][pacmanX] = 3;
             break;
@@ -170,5 +170,5 @@ function game(){
     console.log(map[pacmanY][pacmanX])
 }
 
-setInterval(game, 250);
+setInterval(game, 400);
 // setInterval(render, 1000);
