@@ -10,7 +10,7 @@ let map =[  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0],
             [3,3,3,3,3,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,3,3,3,3,3],
             [3,3,3,3,3,0,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,3,3,3,3,3],
-            [3,3,3,3,3,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,3,3,3,3,3],
+            [3,3,3,3,3,0,1,0,0,1,0,0,0,4,4,0,0,0,1,0,0,1,0,3,3,3,3,3],
             [0,0,0,0,0,0,1,0,0,1,0,3,3,3,3,3,3,0,1,0,0,1,0,0,0,0,0,0],
             [3,3,3,3,3,3,1,1,1,1,0,3,3,3,3,3,3,0,1,1,1,1,3,3,3,3,3,3],
             [0,0,0,0,0,0,1,0,0,1,0,3,3,3,3,3,3,0,1,0,0,1,0,0,0,0,0,0],
@@ -63,6 +63,9 @@ function render(){
                 // case 4:
                 //     pacmap.innerHTML += '<div class="pacman"></div>';
                 //     break;
+                case 4:
+                    pacmap.innerHTML += '<div class="ghost-wall" id="pm${i}-${j}"></div>';
+                    break;
             }
         }
     }
@@ -114,7 +117,7 @@ function movimiento (){
     switch (direction){
         case "up":
             pacImg.src = "images/pacman3.png";
-            if (map[pacmanY-1][pacmanX] != 0){
+            if (map[pacmanY-1][pacmanX] != 0 && map[pacmanY-1][pacmanX] !=4){
                 pacmanY --;
                 pacmanDiv.style.top = pacmanY * blockHeight + "%";
                 //14.5
@@ -122,21 +125,21 @@ function movimiento (){
             break;
         case "right":
             pacImg.src = "images/pacman1.png";
-            if (map[pacmanY][pacmanX+1] != 0){
+            if (map[pacmanY][pacmanX+1] != 0 && map[pacmanY+1][pacmanX] !=4){
                 pacmanX ++;
                 pacmanDiv.style.left = pacmanX * blockHeight + "%";
             }
             break;
         case "down":
             pacImg.src = "images/pacman4.png";
-            if (map[pacmanY+1][pacmanX] != 0){
+            if (map[pacmanY+1][pacmanX] != 0 && map[pacmanY+1][pacmanX] !=4){
                 pacmanY ++;
                 pacmanDiv.style.top = pacmanY * blockHeight + "%";
             }
             break;
         case "left":
             pacImg.src = "images/pacman2.png";
-            if (map[pacmanY][pacmanX-1] != 0){
+            if (map[pacmanY][pacmanX-1] != 0 && map[pacmanY-1][pacmanX] !=4){
                 pacmanX --;
                 pacmanDiv.style.left = pacmanX * blockHeight + "%";
             }
@@ -247,13 +250,67 @@ function addCherry () {
     let cherrySpot1 = document.querySelector("#pm5-13");
     let cherrySpot2 = document.querySelector("#pm23-14");
 
-    if (pacmanY >= 14) {
+    if (pacmanY >= 14 && (map[5][13] != 6 || map[5][13] != 6)) {
         cherrySpot1.innerHTML = '<img src="images/cherry.png" alt="cherry" class="cherry cherry-container">';
         map[5][13] = 6;
-    } else {
+    } else if (pacmanY < 14 && (map[5][13] != 6 || map[5][13] != 6)){
         cherrySpot2.innerHTML = '<img src="images/cherry.png" alt="cherry" class="cherry cherry-container">';
         map[5][13] = 6;
     }
+}
+
+let ghostX = 13;
+let ghostY = 11;
+let ghostDiv = document.querySelector(".ghost");
+ghostDiv.style.top = ghostY * blockHeight + "%";
+ghostDiv.style.left = ghostX * blockWidth + "%";
+
+function ghostMovement () {
+    // let ghostDirection;
+    let randomNumber = Math.floor(Math.random() * 4);
+
+    switch (randomNumber) {
+        case 0:
+            if (map[ghostY-1][ghostX] != 0 && map[ghostY-1][ghostX] != 4){
+            ghostY--;
+            ghostDiv.style.top = ghostY * blockHeight + "%";
+            }
+            break;
+        case 1:
+            if (map[ghostY][ghostX+1] != 0 && map[ghostY][ghostX+1] != 4){
+            ghostX++;
+            ghostDiv.style.left = ghostX * blockWidth + "%";
+            }
+            break;
+        case 2:
+            if (map[ghostY+1][ghostX] != 0 && map[ghostY+1][ghostX] != 4){
+            ghostY++;
+            ghostDiv.style.top = ghostY * blockHeight + "%";
+            }
+            break;
+        case 3:
+            if (map[ghostY][ghostX-1] != 0 && map[ghostY][ghostX-1] != 4){
+            ghostX--;
+            ghostDiv.style.left = ghostX * blockWidth + "%";
+            }
+            break;
+
+        // case 0:
+        //     ghostDirection = "up";
+        //     break;
+        // case 1:
+        //     ghostDirection = "right";
+        //     break;
+        // case 2:
+        //     ghostDirection = "down";
+        //     break;
+        // case 3:
+        //     ghostDirection = "left";
+        //     break;
+    }
+    // console.log(ghostDirection);
+    console.log(randomNumber);
+
 }
 
 // Hacer funcion que se mueva automaticamente con setinterval tomando en cuenta la variable
@@ -266,6 +323,8 @@ function game(){
     mapUpdate();
     // console.log(pacmanArray);
     // console.log(map[pacmanY][pacmanX])
+    
+    ghostMovement();
 }
 
 function statusCheck(){
