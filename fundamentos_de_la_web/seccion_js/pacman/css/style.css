@@ -92,8 +92,13 @@ aside {
     top: 0px;
     left: 102%;
 }
+
 h3 {
     text-align: center;
+}
+
+#points {
+    color: yellow;
 }
 
 .alert-container {
@@ -120,4 +125,26 @@ h3 {
 
 .hidden {
     display: none;
+}
+
+.life-container{
+    display: flex;
+    gap: 2px;
+}
+
+h2{
+    text-align: center;
+}
+
+.lifes {
+    height: 100%;
+}
+
+#time {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+#time::before {
+    content: "⏱️";
 }

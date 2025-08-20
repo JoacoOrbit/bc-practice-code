@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PacMan</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
     <h1>PacMan</h1>
@@ -15,6 +15,14 @@
         <aside>
             <h2>Puntaje</h2>
             <h3 id="points">0</h3>
+            <h2 class="lifes-title">Vidas</h2>
+            <div class="life-container">
+                <img src="images/life.png" alt="heart" class="lifes">
+                <img src="images/life.png" alt="heart" class="lifes">
+                <img src="images/life.png" alt="heart" class="lifes">
+            </div>
+            <h2>Tiempo</h2>
+            <p id="time">5:00</p>
         </aside>
         <div class="alert-container hidden">
             <p class="win hidden">¡Ganaste!</p>
