@@ -142,6 +142,12 @@ function movimiento (){
             }
             break;
     }
+
+    if (pacmanX==27 && pacmanY==14) {
+        pacmanX=1;
+    } else if (pacmanX==0 && pacmanY==14) {
+        pacmanX=26;
+    }
     
 pacmanDiv.style.left = pacmanX * blockWidth + "%";
 pacmanDiv.style.top = pacmanY * blockHeight + "%";
