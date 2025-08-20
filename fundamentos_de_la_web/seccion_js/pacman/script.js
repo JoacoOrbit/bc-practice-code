@@ -49,16 +49,16 @@ function render(){
         for (let j = 0; j<map[i].length; j++){
             switch(map[i][j]){
                 case 0:
-                    pacmap.innerHTML += '<div class="wall"></div>';
+                    pacmap.innerHTML += `<div class="wall" id="pm${i}-${j}"></div>`;
                     break;
                 case 1:
-                    pacmap.innerHTML += '<div class="dot">·</div>';
+                    pacmap.innerHTML += `<div class="dot" id="pm${i}-${j}">·</div>`;
                     break;
                 case 2:
-                    pacmap.innerHTML += '<div class="big-dot">•</div>';
+                    pacmap.innerHTML += `<div class="big-dot" id="pm${i}-${j}">•</div>`;
                     break;
                 case 3:
-                    pacmap.innerHTML += '<div class="empty"></div>';
+                    pacmap.innerHTML += `<div class="empty" id="pm${i}-${j}"></div>`;
                     break;
                 // case 4:
                 //     pacmap.innerHTML += '<div class="pacman"></div>';
@@ -157,9 +157,13 @@ function mapUpdate(){
     // pacmanArray = map[pacmanY][pacmanX]
     switch (map[pacmanY][pacmanX]) {
         case 1:
+            document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.remove("dot");
+            document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.add("empty");
             map[pacmanY][pacmanX] = 3;
             break;
         case 2:
+            document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.remove("big-dot");
+            document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.add("empty");
             turbo();
             map[pacmanY][pacmanX] = 3;
             break;
