@@ -11,9 +11,9 @@ let map =[  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
             [3,3,3,3,3,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,3,3,3,3,3],
             [3,3,3,3,3,0,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,3,3,3,3,3],
             [3,3,3,3,3,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,3,3,3,3,3],
-            [0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0],
-            [3,3,3,3,3,3,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,3,3,3,3,3,3],
-            [0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0],
+            [0,0,0,0,0,0,1,0,0,1,0,3,3,3,3,3,3,0,1,0,0,1,0,0,0,0,0,0],
+            [3,3,3,3,3,3,1,1,1,1,0,3,3,3,3,3,3,0,1,1,1,1,3,3,3,3,3,3],
+            [0,0,0,0,0,0,1,0,0,1,0,3,3,3,3,3,3,0,1,0,0,1,0,0,0,0,0,0],
             [3,3,3,3,3,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,3,3,3,3,3],
             [3,3,3,3,3,0,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,3,3,3,3,3],
             [3,3,3,3,3,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,3,3,3,3,3],
@@ -51,49 +51,95 @@ function render(mapMat){
                     pacmap.innerHTML += '<div class="wall"></div>';
                     break;
                 case 1:
-                    pacmap.innerHTML += '<div class="dot"></div>';
+                    pacmap.innerHTML += '<div class="dot">·</div>';
                     break;
                 case 2:
-                    pacmap.innerHTML += '<div class="big-dot"></div>';
+                    pacmap.innerHTML += '<div class="big-dot">•</div>';
                     break;
                 case 3:
                     pacmap.innerHTML += '<div class="empty"></div>';
                     break;
-                case 4:
-                    pacmap.innerHTML += '<div class="pacman"></div>';
-                    break;
+                // case 4:
+                //     pacmap.innerHTML += '<div class="pacman"></div>';
+                //     break;
             }
         }
     }
+    pacmap.innerHTML += '<div class="pacman"><img src="pacman0.png" alt="pacman"></div>';
 }
 
-function movimiento (mapMat){
-    let pacmanX = 23;
-    let pacmanY = 14;
-    mapMat[pacmanX][pacmanY] = 4;
+render(map);
 
-    let direction;
+//Posicion inicial
+let pacmanY = 23;
+let pacmanX = 14;
+let pacmanArray = map[pacmanY][pacmanX];
+let pacmanDiv = document.querySelector(".pacman");
+let blockWidth = 3.57;
+let blockHeight = 3.22;
+pacmanDiv.style.left = pacmanX * blockWidth + "%";
+pacmanDiv.style.top = pacmanY * blockHeight + "%";
+// mapMat[pacmanX][pacmanY] = 4;
+let direction;
+let pacSpeed = 0.5;
 
-    document.addEventListener('keydown', (event) => {
-        // console.log(event.key);
-        switch(event.key) {
-            case "ArrowUp":
-                direction = "up";
-                break;
-            case "ArrowDown":
-                direction = "down";
-                break;
-            case "ArrowLeft":
-                direction = "left";
-                break;
-            case "ArrowRight":
-                direction = "right";
-                break;
-        }
-    })
+let pacImg = document.querySelector("img");
+
+document.addEventListener('keydown', (event) => {
+    // console.log(event.key);
+    switch(event.key) {
+        case "ArrowUp":
+            direction = "up";
+            break;
+        case "ArrowDown":
+            direction = "down";
+            break;
+        case "ArrowLeft":
+            direction = "left";
+            break;
+        case "ArrowRight":
+            direction = "right";
+            break;
+    }
+})
+
+function movimiento (){
+    
+    switch (direction){
+        case "up":
+            pacmanY -= 1*pacSpeed;
+            pacmanDiv.style.top = pacmanY * blockHeight + "%";
+            pacImg.src = "pacman3.png";
+            break;
+        case "right":
+            pacmanX += 1*pacSpeed;
+            pacmanDiv.style.left = pacmanX * blockHeight + "%";
+            pacImg.src = "pacman1.png";
+            break;
+        case "down":
+            pacmanY += 1*pacSpeed;
+            pacmanDiv.style.top = pacmanY * blockHeight + "%";
+            pacImg.src = "pacman4.png";
+            break;
+        case "left":
+            pacmanX -= 1*pacSpeed;
+            pacmanDiv.style.left = pacmanX * blockHeight + "%";
+            pacImg.src = "pacman2.png";
+            break;
+    }
+    
+pacmanDiv.style.left = pacmanX * blockWidth + "%";
+pacmanDiv.style.top = pacmanY * blockHeight + "%";
 };
+
+function mapUpdate(){
+    
+}
 
 // Hacer funcion que se mueva automaticamente con setinterval tomando en cuenta la variable
 
-movimiento(map);
-render(map);
+function game(){
+    movimiento();
+}
+
+setInterval(game, 250);
