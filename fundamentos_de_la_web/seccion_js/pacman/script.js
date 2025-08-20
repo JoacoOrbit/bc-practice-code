@@ -84,6 +84,8 @@ pacmanDiv.style.top = pacmanY * blockHeight + "%";
 // mapMat[pacmanX][pacmanY] = 4;
 let direction;
 // let pacSpeed = 0.5;
+let points = 0;
+let pointElement = document.querySelector("#points");
 
 let pacImg = document.querySelector("img");
 
@@ -104,6 +106,8 @@ document.addEventListener('keydown', (event) => {
             break;
     }
 })
+
+// make pacman moves based on the current direction
 
 function movimiento (){
     
@@ -143,6 +147,8 @@ pacmanDiv.style.left = pacmanX * blockWidth + "%";
 pacmanDiv.style.top = pacmanY * blockHeight + "%";
 };
 
+// adds functionality to big dots
+
 function turbo(){
     // pacSpeed = 1;
     pacmanDiv.style.backgroundColor = "blue";
@@ -153,6 +159,8 @@ function turbo(){
     // pacSpeed = 0.5;
 }
 
+// updates map based on eaten dots
+
 function mapUpdate(){
     // pacmanArray = map[pacmanY][pacmanX]
     switch (map[pacmanY][pacmanX]) {
@@ -160,12 +168,14 @@ function mapUpdate(){
             document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.remove("dot");
             document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.add("empty");
             map[pacmanY][pacmanX] = 3;
+            addPoints("dot");
             break;
         case 2:
             document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.remove("big-dot");
             document.querySelector("#pm"+[pacmanY]+"-"+[pacmanX]).classList.add("empty");
             turbo();
             map[pacmanY][pacmanX] = 3;
+            addPoints("big-dot");
             break;
     }
 }
@@ -173,6 +183,8 @@ function mapUpdate(){
 let alertContainer = document.querySelector(".alert-container");
 let winAlert = document.querySelector(".win");
 let lossAlert = document.querySelector(".loss");
+
+// checks to see if there are no dots left and win
 
 function checkResult () {
     let areThereDots = document.querySelectorAll(".dot, .big-dot");
@@ -187,7 +199,23 @@ function checkResult () {
     return areThereDots;
 }
 
+// add points based on the type of item eaten
+
+function addPoints (type) {
+    let pointsToInt = parseInt(pointElement.textContent);
+    if (type == "dot") {
+        pointsToInt += 5;
+    } else if (type == "big-dot") {
+        pointsToInt += 20;
+    } else if (typpe == "cherry") {
+        pointsToInt += 100;
+    }
+    pointElement.textContent = pointsToInt;
+}
+
 // Hacer funcion que se mueva automaticamente con setinterval tomando en cuenta la variable
+
+// make games run
 
 function game(){
     movimiento();
@@ -204,6 +232,8 @@ function game(){
 //         element.classList.remove("big-dot")
 //     });
 // }, 10000);
+
+//game updates constantly
 
 const gaming = setInterval(game, 400);
 const result = setInterval(checkResult, 1000)
