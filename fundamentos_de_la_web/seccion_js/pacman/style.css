@@ -17,16 +17,23 @@ h1 {
     color: yellow;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+.container {
+    height: 80vh;
+    width: 72.25806451612903vh;
+    position: relative;
+}
+
 .pacmap {
     /* width: 280px;
     height: 310px; */
     /* border: 4px blue dotted; */
+    height: inherit;
+    width: inherit;
     display: grid;
     grid-template-columns: repeat(28, 3.57%);
     grid-template-rows: repeat(31, 3.22%);
-    position: relative;
-    height: 80vh;
-    width: 72.25806451612903vh;
+    /* position: relative; */
 }
 
 .wall {
@@ -72,6 +79,7 @@ h1 {
     /* background-color: green; */
     position: absolute;
     display: flex;
+    z-index: 3;
 }
 img {
     width: 100%;

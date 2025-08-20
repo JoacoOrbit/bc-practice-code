@@ -40,13 +40,14 @@ let map =[  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 //     5: "ghost"
 // }
 
-function render(mapMat){
-    const pacmap = document.querySelector(".pacmap");
+const pacmap = document.querySelector(".pacmap");
+
+function render(){
     pacmap.innerHTML = "";
 
-    for (let i = 0; i<mapMat.length; i++){
-        for (let j = 0; j<mapMat[i].length; j++){
-            switch(mapMat[i][j]){
+    for (let i = 0; i<map.length; i++){
+        for (let j = 0; j<map[i].length; j++){
+            switch(map[i][j]){
                 case 0:
                     pacmap.innerHTML += '<div class="wall"></div>';
                     break;
@@ -65,10 +66,11 @@ function render(mapMat){
             }
         }
     }
-    pacmap.innerHTML += '<div class="pacman"><img src="pacman0.png" alt="pacman"></div>';
 }
 
 render(map);
+
+// pacmap.innerHTML += '<div class="pacman"><img src="pacman0.png" alt="pacman"></div>';
 
 //Posicion inicial
 let pacmanY = 23;
@@ -107,24 +109,24 @@ function movimiento (){
     
     switch (direction){
         case "up":
+            pacImg.src = "pacman3.png";
             pacmanY -= 1*pacSpeed;
             pacmanDiv.style.top = pacmanY * blockHeight + "%";
-            pacImg.src = "pacman3.png";
             break;
         case "right":
+            pacImg.src = "pacman1.png";
             pacmanX += 1*pacSpeed;
             pacmanDiv.style.left = pacmanX * blockHeight + "%";
-            pacImg.src = "pacman1.png";
             break;
         case "down":
+            pacImg.src = "pacman4.png";
             pacmanY += 1*pacSpeed;
             pacmanDiv.style.top = pacmanY * blockHeight + "%";
-            pacImg.src = "pacman4.png";
             break;
         case "left":
+            pacImg.src = "pacman2.png";
             pacmanX -= 1*pacSpeed;
             pacmanDiv.style.left = pacmanX * blockHeight + "%";
-            pacImg.src = "pacman2.png";
             break;
     }
     
@@ -132,14 +134,32 @@ pacmanDiv.style.left = pacmanX * blockWidth + "%";
 pacmanDiv.style.top = pacmanY * blockHeight + "%";
 };
 
+function turbo(){
+    pacSpeed = 1;
+    setTimeout(5000);
+    pacSpeed = 0.5;
+}
+
 function mapUpdate(){
-    
+    pacmanArray = map[pacmanY][pacmanX]
+    switch (pacmanArray) {
+        case 1:
+            map[pacmanY][pacmanX] = 3;
+            break;
+        case 2:
+            turbo();
+            break;
+    }
 }
 
 // Hacer funcion que se mueva automaticamente con setinterval tomando en cuenta la variable
 
 function game(){
     movimiento();
+    mapUpdate();
+    console.log(pacmanArray);
+    console.log(map[pacmanY][pacmanX])
 }
 
 setInterval(game, 250);
+// setInterval(render, 1000);
