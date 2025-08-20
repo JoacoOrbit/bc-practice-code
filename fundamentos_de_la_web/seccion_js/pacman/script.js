@@ -170,6 +170,23 @@ function mapUpdate(){
     }
 }
 
+let alertContainer = document.querySelector(".alert-container");
+let winAlert = document.querySelector(".win");
+let lossAlert = document.querySelector(".loss");
+
+function checkResult () {
+    let areThereDots = document.querySelectorAll(".dot, .big-dot");
+
+    if (areThereDots.length == 0) {
+        pacmanDiv.remove();
+        alertContainer.classList.toggle("hidden");
+        winAlert.classList.toggle("hidden");
+        clearInterval(gaming);
+        clearInterval(result);
+    }
+    return areThereDots;
+}
+
 // Hacer funcion que se mueva automaticamente con setinterval tomando en cuenta la variable
 
 function game(){
@@ -180,5 +197,14 @@ function game(){
     console.log(map[pacmanY][pacmanX])
 }
 
-setInterval(game, 400);
+// setTimeout(() => {
+//     let debugDots = document.querySelectorAll(".dot, .big-dot");
+//     debugDots.forEach(element => {
+//         element.classList.remove("dot")
+//         element.classList.remove("big-dot")
+//     });
+// }, 10000);
+
+const gaming = setInterval(game, 400);
+const result = setInterval(checkResult, 1000)
 // setInterval(render, 1000);
