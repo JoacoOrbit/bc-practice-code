@@ -13,5 +13,7 @@ public class Application {
         System.out.println(user2.toString());
         System.out.println(user3.toString());
         System.out.println(user4.toString());
+
+        System.out.println("Nombre del User 3" + user3.getNombre());
     }
 }
