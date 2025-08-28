@@ -6,28 +6,39 @@ public class Usuario {
     private String nombre;
     private LocalDate fechaNacimiento;
     private int edad;
+    private String email;
 
     //Metodos constructores
     public Usuario(){
-        this.nombre = "";
-        this.fechaNacimiento = LocalDate.now();
-        this.edad = 0;
+        // this.nombre = "";
+        // this.fechaNacimiento = LocalDate.now();
+        // this.edad = 0;
+        // this.email = "";
+
+        this("","2025-08-28", "");
     }
 
     public Usuario(String nombre, String fechaNacimiento, int edad){
-        this.nombre = nombre;
-        this.edad = edad;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(fechaNacimiento, formatter);
-        this.fechaNacimiento = date;
+        // this.nombre = nombre;
+        // this.edad = edad;
+        // this.fechaNacimiento = this.formatearFecha(fechaNacimiento);
+        // this.email = "";
+        this(nombre, fechaNacimiento, "");
     }
 
     public Usuario(String nombre, String fechaNacimiento){
+        // this.nombre = nombre;
+        // this.fechaNacimiento = this.formatearFecha(fechaNacimiento);
+        // this.edad = this.calcularEdad();
+        // this.email = "";
+        this(nombre, fechaNacimiento, "");
+    }
+
+    public Usuario(String nombre, String fechaNacimiento, String email) {
         this.nombre = nombre;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(fechaNacimiento, formatter);
-        this.fechaNacimiento = date;
+        this.fechaNacimiento = this.formatearFecha(fechaNacimiento);
         this.edad = this.calcularEdad();
+        this.email = email;
     }
     
     // Getters y Setters
@@ -52,9 +63,15 @@ public class Usuario {
     }
 
     public void setFechaNacimiento(String fechaNacimiento){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(fechaNacimiento, formatter);
-        this.fechaNacimiento = date;
+        this.fechaNacimiento = this.formatearFecha(fechaNacimiento);
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
 
     // metodos de instancia
@@ -62,6 +79,20 @@ public class Usuario {
         Period diferencia = Period.between(this.fechaNacimiento, LocalDate.now());
         int edadCalculada = diferencia.getYears();
         return edadCalculada;
+    }
+
+    private int calcularEdad(String fechaNacimiento){
+        return 0;
+    }
+
+    private int calcularEdad(int añoNacimiento){
+        return 0;
+    }
+
+    private LocalDate formatearFecha(String fecha){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(fecha, formatter);
+        return date;
     }
 
     @Override
