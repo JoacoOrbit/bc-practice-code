@@ -7,6 +7,8 @@ public class Usuario {
     private LocalDate fechaNacimiento;
     private int edad;
     private String email;
+    private int id;
+    public static int incrementId = 1;
 
     //Metodos constructores
     public Usuario(){
@@ -39,6 +41,8 @@ public class Usuario {
         this.fechaNacimiento = this.formatearFecha(fechaNacimiento);
         this.edad = this.calcularEdad();
         this.email = email;
+        this.id = Usuario.incrementId;
+        Usuario.incrementId++;
     }
     
     // Getters y Setters
@@ -74,6 +78,14 @@ public class Usuario {
         this.email = email;
     }
 
+    public int getId(){
+        return id;
+    }
+
+    public static int getIncrementId (){
+        return incrementId;
+    }
+
     // metodos de instancia
     private int calcularEdad(){
         Period diferencia = Period.between(this.fechaNacimiento, LocalDate.now());
@@ -85,7 +97,7 @@ public class Usuario {
         return 0;
     }
 
-    private int calcularEdad(int añoNacimiento){
+    private int calcularEdad(int anioNacimiento){
         return 0;
     }
 
@@ -97,6 +109,6 @@ public class Usuario {
 
     @Override
     public String toString(){
-        return "Nombre: " + this.nombre + ", Fecha de Nacimiento: " + this.fechaNacimiento + ", Edad: " + this.edad;
+        return "ID: " + this.id + ", Nombre: " + this.nombre + ", Fecha de Nacimiento: " + this.fechaNacimiento + ", Edad: " + this.edad + ", Email: " + this.email;
     }
 }
