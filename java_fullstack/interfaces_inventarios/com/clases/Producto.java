@@ -33,7 +33,7 @@ public class Producto implements Validable {
         return precio;
     }
 
-    public void setNombre (double precio){
+    public void setPrecio (double precio){
         this.precio = precio;
     }
 
