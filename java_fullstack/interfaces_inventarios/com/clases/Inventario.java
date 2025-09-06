@@ -32,10 +32,10 @@ public class Inventario implements Auditable, Validable{
     }
 
     public void registraAccion(String accion){
-
+        System.out.println("Accion registrada: " + accion);
     }
 
     public void validarInformacion(){
-        
+        System.out.println("Información Validada");
     }
 }

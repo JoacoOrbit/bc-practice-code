@@ -38,6 +38,6 @@ public class Producto implements Validable {
     }
 
     public void validarInformacion(){
-        
+        System.out.println("Información Validada");
     }
 }

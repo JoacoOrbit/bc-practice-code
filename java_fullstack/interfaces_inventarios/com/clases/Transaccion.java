@@ -37,6 +37,6 @@ public class Transaccion implements Auditable {
     }
 
     public void registraAccion(String accion){
-
+        System.out.println("Accion registrada: " + accion);
     }
 }
