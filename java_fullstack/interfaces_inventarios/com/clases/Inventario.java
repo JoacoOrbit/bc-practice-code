@@ -14,6 +14,14 @@ public class Inventario implements Auditable, Validable{
         this.productos = new ArrayList<>(productos);
     }
 
+    public List<Producto> getProductos(){
+        return this.productos;
+    }
+
+    public void setProductos(List<Producto> productos){
+        this.productos = productos;
+    }
+
     public void agregarProducto(Producto producto){
         this.productos.add(producto);
     }

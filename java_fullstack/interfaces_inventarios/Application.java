@@ -16,5 +16,20 @@ public class Application {
     inventario.eliminarProducto(producto1);
 
     inventario.buscarProducto("abc3");
+
+    producto2.validarInformacion();
+    inventario.registraAccion("doritos");
+    inventario.validarInformacion();
+
+    listaProducto(inventario);
+    }
+
+    public static void listaProducto(Inventario inventario){
+        for (Producto p : inventario.getProductos()){
+            System.out.println("Nombre: " + p.getNombre());
+            System.out.println("Precio: " + p.getPrecio());
+            System.out.println("Id: " + p.getIdProducto());
+            System.out.println("------------------------");
+        }
     }
 }
